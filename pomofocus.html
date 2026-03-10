@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomofocus</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    Pomofocus
+  </div>
+  <div class="nav-actions">
+    <button class="nav-btn" onclick="openReport()">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      Report
+    </button>
+    <button class="nav-btn" onclick="openSettings()">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96a6.98 6.98 0 00-1.62-.94l-.36-2.54A.48.48 0 0014 2h-4a.48.48 0 00-.48.41l-.36 2.54a7.07 7.07 0 00-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87a.47.47 0 00.12.61l2.03 1.58c-.05.3-.08.62-.08.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.07.24.29.41.54.41h4c.24 0 .47-.17.53-.41l.36-2.54a6.95 6.95 0 001.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 00-.12-.61l-2.03-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg>
+      Setting
+    </button>
+    <div id="authArea" style="position:relative">
+      <button class="nav-btn" id="authBtn" onclick="handleAuthBtn()">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        <span id="authBtnText">Sign In</span>
+      </button>
+      <div class="user-menu" id="userMenu">
+        <button class="user-menu-item" onclick="openReport(); closeUserMenu()">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H7v-2h5v2zm5-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          Hisobot
+        </button>
+        <button class="user-menu-item" onclick="openSettings(); closeUserMenu()">
+          <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96a6.98 6.98 0 00-1.62-.94l-.36-2.54A.48.48 0 0014 2h-4a.48.48 0 00-.48.41l-.36 2.54a7.07 7.07 0 00-1.62.94l-2.39-.96a.48.48 0 00-.59.22L2.74 8.87a.47.47 0 00.12.61l2.03 1.58c-.05.3-.08.62-.08.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.3.59.22l2.39-.96c.5.36 1.04.67 1.62.94l.36 2.54c.07.24.29.41.54.41h4c.24 0 .47-.17.53-.41l.36-2.54a6.95 6.95 0 001.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.47.47 0 00-.12-.61l-2.03-1.58zM12 15.6A3.6 3.6 0 1112 8.4a3.6 3.6 0 010 7.2z"/></svg>
+          Sozlamalar
+        </button>
+        <button class="user-menu-item danger" onclick="signOut()">
+          <svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5-5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>
+          Chiqish
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<main>
+
+  <div class="timer-card">
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="pomodoro" onclick="switchMode('pomodoro',this)">Pomodoro</button>
+      <button class="mode-tab" data-mode="short" onclick="switchMode('short',this)">Short Break</button>
+      <button class="mode-tab" data-mode="long" onclick="switchMode('long',this)">Long Break</button>
+    </div>
+
+    <div id="timerDisplay">25:00</div>
+
+    <div class="controls">
+      <button id="startBtn"  onclick="toggleTimer(),new Audio('Click 1.mp3')">START</button>
+      <button class="skip-btn" onclick="skipTimer()" title="Skip">
+        <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+      </button>
+    </div>
+
+    <div class="round-info" id="roundInfo">#1 — Diqqat vaqti! </div>
+  </div>
+
+  <div class="section-divider">
+    <h2>Vazifalar</h2>
+    <button class="dot-menu-btn" onclick="clearDone()" title="Bajarilganlarni o'chirish">
+      <i class="fa-solid fa-trash" style="color: rgb(255, 255, 255);"></i>
+    </button>
+  </div>
+
+  <div id="taskList"></div>
+
+  <div id="addTaskBox">
+    <input type="text" id="taskInput" placeholder="Vazifa nomini kiriting..." maxlength="80"/>
+    <div class="add-task-footer">
+      <span class="pomo-label">
+        
+        <input type="number" id="pomoCount" value="1" min="1" max="20"/>
+        pomodoro
+      </span>
+      <div class="add-task-btns">
+        <button class="btn-cancel" onclick="hideAddTask()">Bekor</button>
+        <button class="btn-save" onclick="saveTask()">Saqlash</button>
+      </div>
+    </div>
+  </div>
+
+  <button id="addTaskTrigger" onclick="showAddTask()">
+    <svg viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+  </button>
+
+  
+  <div class="info-section">
+    <div class="info-inner">
+      <h3>Samaradorligingizni oshirish uchun<br>onlayn Pomodoro taymeri</h3>
+
+      <div class="info-block">
+        <h4>Pomofocus nima?</h4>
+        <p>Pomofocus — desktop va mobil brauzerda ishlaydigan moslashtiriluvchi pomodoro taymeri. Bu ilova <span>Pomodoro Texnikasi</span> asosida yaratilgan — Francesco Cirillo ishlab chiqqan vaqtni boshqarish usuli.</p>
+      </div>
+
+      <div class="info-block">
+        <h4>Pomodoro Texnikasi nima?</h4>
+        <p>Texnika ish vaqtini odatda 25 daqiqalik intervallarga bo'ladi, har bir intervaldan keyin qisqa tanaffus beriladi. Har bir interval "pomodoro" deb ataladi — italyancha "pomidor" so'zidan olingan.</p>
+      </div>
+
+      <div class="info-block">
+        <h4>Qanday foydalanish kerak?</h4>
+        <ol>
+          <li><span>Vazifalar qo'shing</span> — bugun nima qilishingiz kerak</li>
+          <li><span>Pomodoro sonini belgilang</span> (1 = 25 daqiqa ish)</li>
+          <li><span>Vazifa tanlang</span> va taymerni boshlang</li>
+          <li><span>25 daqiqa</span> diqqat bilan ishlang</li>
+          <li><span>5 daqiqa dam oling</span> signal jiringladi</li>
+          <li><span>3–5 marta takrorlang</span>, keyin uzun tanaffus</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<div class="modal-overlay" id="reportModal">
+  <div class="modal">
+    <h3>📊 Bugungi Hisobot</h3>
+    <div class="report-grid">
+      <div class="report-stat">
+        <div class="stat-num" id="rPomos">0</div>
+        <div class="stat-label">Pomodoro</div>
+      </div>
+      <div class="report-stat">
+        <div class="stat-num" id="rFocus">0</div>
+        <div class="stat-label">Daqiqa</div>
+      </div>
+      <div class="report-stat">
+        <div class="stat-num" id="rTasks">0</div>
+        <div class="stat-label">Vazifa</div>
+      </div>
+    </div>
+    <div class="report-days">
+      <h4>Bu hafta (pomodoro soni)</h4>
+      <div class="day-bars" id="dayBars"></div>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="closeReport()">Yopish</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Kirish</button>
+      <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Ro'yxatdan o'tish</button>
+    </div>
+    <div class="auth-form" id="authForm">
+      <input type="email" id="authEmail" placeholder="Email manzilingiz"/>
+      <input type="password" id="authPass" placeholder="Parol"/>
+      <div id="authNameWrap" style="display:none">
+        <input type="text" id="authName" placeholder="Ismingiz"/>
+      </div>
+      <button class="auth-submit" id="authSubmit" onclick="doAuth()">Kirish</button>
+      <div class="auth-divider">— yoki —</div>
+      <button class="google-btn" onclick="doGoogleAuth()">
+        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Google bilan kirish
+      </button>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="closeAuth()">Bekor</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <h3>⚙️ Sozlamalar</h3>
+    <div class="setting-row">
+      <label>Pomodoro (daqiqa)</label>
+      <input type="number" id="setPomo" value="25" min="1" max="60"/>
+    </div>
+    <div class="setting-row">
+      <label>Qisqa tanaffus (daqiqa)</label>
+      <input type="number" id="setShort" value="5" min="1" max="30"/>
+    </div>
+    <div class="setting-row">
+      <label>Uzun tanaffus (daqiqa)</label>
+      <input type="number" id="setLong" value="15" min="1" max="60"/>
+    </div>
+    <div class="modal-btns">
+      <button class="btn-modal-cancel" onclick="closeSettings()">Bekor</button>
+      <button class="btn-modal-save" onclick="saveSettings()">Saqlash</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="./script.js"></script>
+</body>
+</html>
